@@ -1,0 +1,25 @@
+#  FvwmBacker is a fvwm module which takes care
+#  of your desktop wallpapers. 
+#
+#  Please mind that this file is not read by
+#  default, see ./config for details.
+# 
+#  Here is the example of setting different wallpapers
+#  for different desktop pages (see desktop file for 
+#  crude explanation of fvwm desktop concept)
+#  
+#  The theme does not include wallpapers, so you'll 
+#  have to type in paths of your own.
+#  
+#  You also have to make sure the images are .png
+#  and their size fit your screen resolution 
+#  for this to work.
+
+*FvwmBacker: Command (Desk 0, Page 0 0) Exec feh --bg-scale --nofehbg $[HOME]/Images/Wallpapers/protoss_dark.png
+*FvwmBacker: Command (Desk 0, Page 1 0) Exec feh --bg-scale --nofehbg $[HOME]/Images/Wallpapers/protoss_light.jpg
+*FvwmBacker: Command (Desk 0, Page 2 0) Exec feh --bg-scale --nofehbg $[HOME]/Images/Wallpapers/chameleon.jpg
+*FvwmBacker: Command (Desk 0, Page 3 0) Exec feh --bg-scale --nofehbg $[HOME]/Images/Wallpapers/skipper&co.jpg
+*FvwmBacker: Command (Desk 0, Page 4 0) Exec feh --bg-scale --nofehbg $[HOME]/Images/Wallpapers/transmission.jpg
+*FvwmBacker: Command (Desk 0, Page 5 0) Exec feh --bg-scale --nofehbg $[HOME]/Images/Wallpapers/black_pattern.jpg
+*FvwmBacker: Command (Desk 0, Page 6 0) Exec feh --bg-scale --nofehbg $[HOME]/Images/Wallpapers/penguins.jpg
+*FvwmBacker: Command (Desk 0, Page 7 0) Exec feh --bg-scale --nofehbg $[HOME]/Images/Wallpapers/keep_calm.png

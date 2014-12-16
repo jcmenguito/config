@@ -1,0 +1,28 @@
+#  Здесь задаются индивидуальные стили для
+#  приложений.
+# 
+#  Если посмотреть описание команды
+#  Style в мануале, то видно, что с её помощью
+#  можно описать практически любой аспект 
+#  поведения окна - запуск на определённом 
+#  рабочем столе, фокус, декорации и т.д.
+#  
+#  Здесь определены несколько простых стилей.
+#  
+#  
+#  Убрать декорации quake-терминалов.
+
+Style quake-term !Title, !Handles, !Borders, !Icon, WindowListSkip
+Style FvwmConsole !Title, !Handles, !Borders, !Icon, WindowListSkip
+
+#  Убрать тайтлбары gmrun и диалога закрытия
+
+Style gmrun !Title
+Style shutdown-dialog.py !Title
+
+#  Убрать декорации панелей, треев и т.д.
+#
+#  Style conky !Title, !Handles, !Borders, !Icon, WindowListSkip
+#  Style tint2 !Title, !Handles, !Borders, !Icon, WindowListSkip 
+#  Style fbpanel !Title, !Handles, !Borders, !Icon, WindowListSkip
+#  Style stalonetray !Title, !Handles, !Borders, !Icon, WindowListSkip

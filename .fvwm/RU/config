@@ -1,0 +1,32 @@
+#  Это главный файл конфигурации. 
+ 
+#  В этом варианте настройки он содержит только
+#  ссылки на другие файлы, каждый из которых 
+#  отвечает за свой аспект поведения wm.
+
+#  Мне кажется, что в таком виде его проще читать 
+#  и править.
+
+Пока оставьте его как есть.
+
+Read environmental_variables
+Read general_settings
+Read desktops
+#Read backer
+Read autostarted_applications
+Read functions
+Read focus_policy
+Read keybindings_and_mouse
+Read main_menu
+Read applications_menu
+Read preferences_menu
+Read window_menu
+Read themes/$[fvwm_theme]/colorsets
+Read themes/$[fvwm_theme]/fonts
+Read themes/$[fvwm_theme]/menu_style
+Read themes/$[fvwm_theme]/titlebar
+Read themes/$[fvwm_theme]/window_decor
+Read per-application_rules
+Read test
+
+

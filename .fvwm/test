@@ -1,0 +1,66 @@
+#  A playground. Test your ideas here.
+#  It is read the last, so what's here 
+#  would override all the options in the other
+#  files. 
+#
+#  On the other hand, if it makes any mess,
+#  just purge it.
+
+# Keybindings
+#-----------------------------------------------------------------------
+# press SHIFT-ALT arrow anywhere, move active
+# window to next/previous page
+#-----------------------------------------------------------------------
+Key Left     A        SM        FuncMoveWindowToPage -1p +0p
+Key Right    A        SM        FuncMoveWindowToPage +1p +0p
+Key Up       A        SM        FuncMoveWindowToPage +0p -1p
+Key Down     A        SM        FuncMoveWindowToPage +0p +1p
+
+#-----------------------------------------------------------------------
+# key 1-4 move current window to page n
+#-----------------------------------------------------------------------
+Key 1        A        SM        Current FuncMoveWindowToPage 0 0
+Key 2        A        SM        Current FuncMoveWindowToPage 1 0
+Key 3        A        SM        Current FuncMoveWindowToPage 0 1
+Key 4        A        SM        Current FuncMoveWindowToPage 1 1
+
+#-----------------------------------------------------------------------
+# Go to page n with SHIFT-CTRL + number
+#-----------------------------------------------------------------------
+Key 1        A        SC        FuncGotoPage 0 0
+Key 2        A        SC        FuncGotoPage 1 0
+Key 3        A        SC        FuncGotoPage 0 1
+Key 4        A        SC        FuncGotoPage 1 1
+
+#-----------------------------------------------------------------------
+# press SHIFT-CTRL arrow anywhere, and scroll by one page
+#-----------------------------------------------------------------------
+Key Left     A        SC        FuncGotoPage -1p +0p
+Key Right    A        SC        FuncGotoPage +1p +0p
+Key Up       A        SC        FuncGotoPage +0p -1p
+Key Down     A        SC        FuncGotoPage +0p +1p
+
+#-----------------------------------------------------------------------
+# Move active window to next/previous page
+#-----------------------------------------------------------------------
+DestroyFunc FuncMoveWindowToPage
+AddToFunc   FuncMoveWindowToPage
++ I MoveToPage $0 $1
++ I GotoPage $0 $1
+
+#-----------------------------------------------------------------------
+# GotoPage and set focus to window which is in the foreground
+#-----------------------------------------------------------------------
+DestroyFunc FuncGotoPage
+AddToFunc   FuncGotoPage
++ I GotoPage $0 $1
++ I Next (CurrentPage, !Iconic, !Sticky, !Shaded, !Focused, !Overlapped) FuncSelectWindow
+
+#-----------------------------------------------------------------------
+# This function selects a window, give it the focus and raise it
+#-----------------------------------------------------------------------
+DestroyFunc FuncSelectWindow
+AddToFunc   FuncSelectWindow
++ I Iconify off
++ I Focus
++ I Raise

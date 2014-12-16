@@ -1,0 +1,5 @@
+# Fonts are written much like in 
+# conky config here:
+
+Style "*" Font "xft:Droid Sans Bold:size=8"
+MenuStyle "*" Font "xft:droid:style=bold:size=10"

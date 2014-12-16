@@ -1,0 +1,141 @@
+#  Назначим клавиатурные сочетания.
+#  
+#  Синтаксис такой:
+#  Key (ИмяОкна если нужно) Клавиша Контекст Модификатор Действие
+#
+#  fvwm позволяет назначить разные действия для разных
+#  имён окна. Для этого имя окна или его часть нужно
+#  поместить в скобках после Key:
+#  Key (gedit)... или Key (*edit*)...
+#
+#  Клавиша - любая клавиша, кроме модификаторов, в т.ч.
+#  мультимедийная.
+#  
+#  Контекст - это часть интерфейса, в которой 
+#  применяется действие:
+#  
+#  R - Рабочий стол
+#  I - Окно, свёрнутое в иконку
+#  F - Угол декорации окна
+#  S - Сторона декорации окна
+#  T - Тайтлбар
+#  W - Активное окно 
+#  0-9 - Кнопки тайтлбара
+#  M - Меню
+#  A - Любой контекст
+#
+#  Контексты можно комбинировать: FWST
+#
+#  Модификаторы:
+#  
+#  ctrl - C
+#  super - 4
+#  alt - 1
+#  shift - S
+#  caps - L
+#  num - 2
+#
+#  Модификаторы также можно комбинировать: 1S, 4S 
+#  
+#  Если вы используете несколько рабочих столов, 
+#  настройте переключение между ними здесь, команда
+#  перехода на другой рабочий стол: GotoDesk 0...n
+#  
+#  Несколько комбинаций, которые уже работают - 
+#  запуск приложений и прочие приятности. 
+
+#  Управление окнами и клавиши общего назначения:
+
+Key F4 W M DeleteWin
+Key Tab A M WindowList Root NoGeometry
+Key M A M Module FvwmConsole
+Key F2 A 1 Exec exec $[fvwm_runner]
+Key Space A 4 Menu MainMenu
+Key t W S4 WinOnTop
+Key a W S4 ToggleAutoShaded
+Key d W S4 UnDecorate
+Key d W 4 Decorate
+Key m W 4 Maximize 100 100
+Key r W 4 ReadableWidth
+Key i W 4 Iconify
+Key F7 W 1 Move
+Key F8 W 1 Resize
+Key D W 4 Decorate
+
+#  Перемещение заголовка активного окна:
+
+Key Left W S4 WindowStyle TitleAtLeft
+Key Right W S4 WindowStyle TitleAtRight
+Key Up W S4 WindowStyle TitleAtTop
+Key Down W S4 WindowStyle TitleAtBottom
+
+
+#  Группировка окон и переключение 
+#  Между группами и внутри них:
+#  
+#  Чтобы исключить окно из группы, 
+#  нужно просто применить комбинацию
+#  клавиш для включения ещё раз.
+
+Key 1 W C4 AddToGroup 1
+Key 2 W C4 AddToGroup 2 
+Key 3 W C4 AddToGroup 3
+Key 1 A 4 GroupSwitch 1 
+Key 2 A 4 GroupSwitch 2
+Key 3 A 4 GroupSwitch 3
+
+#  Принтскрин, куда же без него:
+
+Key Print A N FvwmDesktopScreenshot
+
+#  Включаем "умный" запуск приложений,
+#  который описан в functions
+#  
+#  Как мы помним, LaunchRaiseSwitch передаются
+#  два параметра - типичное для приложения имя окна
+#  и команда для запуска.
+#  
+#  В качестве последней используются те 
+#  команды, которые мы задали в 
+#  environmental_variables.
+#  
+#  Здесь имена окон от приложений, которые 
+#  используются у меня, вам нужно подставить 
+#  свои.
+
+Key t A 4 LaunchRaiseSwitch urxvt $[fvwm_terminal] 
+Key f A 4 LaunchRaiseSwitch *File*Manager $[fvwm_filemanager]
+Key e A 4 LaunchRaiseSwitch *gedit $[fvwm_editor]
+Key w A 4 LaunchRaiseSwitch *Namoroka $[fvwm_browser]
+Key p A 4 LaunchRaiseSwitch *Sonata* $[fvwm_player]
+Key g A 4 LaunchRaiseSwitch *GIMP gimp
+
+#  Просто запустить приложение:
+
+Key t A C4 Exec exec $[fvwm_terminal]
+Key f A C4 Exec exec $[fvwm_filemanager]
+Key e A C4 Exec exec $[fvwm_editor]
+Key w A C4 Exec exec $[fvwm_browser]
+Key p A C4 Exec exec $[fvwm_player]
+Key g A C4 Exec exec gimp
+
+#  Наш quake-термнал:
+
+Key Grave A C QLikeTerm $[fvwm_terminal] quake-term 1366 768 0 0
+Key Q A 4 QLikeFvwmConsole  812 360 275 408
+
+#  Кнопки мыши назначаются также, как 
+#  клавиши.
+
+Mouse 3 R A Menu MainMenu
+Mouse 1 R A WindowList Root NoGeometry
+Mouse 1 T A TitleFunction
+
+#  !! Действия для кнопок на тайтлбаре 
+#  назначаются в /theme/gray/titlebar!!
+
+#  Мультимедийные клавиши тоже можно настроить здесь.
+
+# Key XF86AudioRaiseVolume A A Exec amixer set PCM 3+
+# Key XF86AudioLowerVolume A A Exec amixer set PCM 3-
+# Key XF86AudioMute A A Exec exec amixer set Master toggle

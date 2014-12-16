@@ -1,0 +1,56 @@
+use_spacer yes
+background no
+use_xft yes
+xftfont Monospace:pixelsize=11
+xftalpha 1
+update_interval 4.0
+own_window no
+double_buffer yes
+minimum_size 200
+draw_outline no
+draw_borders no
+stippled_borders 0
+border_margin 9
+gap_x 24
+gap_y 24
+no_buffers yes
+alignment top_right
+text_buffer_size 256
+TEXT
+ОКНА
+${hr}
+Alt+F4 - закрыть
+Alt+F7 - двигать
+Alt+F8 - менять размер
+
+Super+m - на весь экран
+Super+i - скрыть
+Super+r - 50% ширины, в центр
+Super+Shift+a - автошейд
+Super+Shift+t - поверх всех
+Super+Shift+d - убрать декорации
+Super+d - вернуть декорации
+Super+Shift+arrow - двигать заголовок окна
+Super+Shift+{1..3} - добавить окно в группу
+Super+{1..3} - переключаться между окнами/группами
+
+ПРИЛОЖЕНИЯ
+${hr}
+Запустить приложение/переключаться между окнами
+Super+t - терминал
+Super+f - файл-менеджер
+Super+e - тексовый редактор
+Super+w - браузер
+Super+p - плеер
+
+Ctrl+Super+key - просто запустить
+
+ПРОЧЕЕ
+${hr}
+PrtScr - скриншот
+Super+Space - главное меню
+Ctrl+Grave - quake-терминал
+Alt+m - консоль fvwm
+Alt+F2 - запустить приложение
+
+

@@ -1,0 +1,49 @@
+#  IMPORTANT! Colorset numeration
+#  convention given in manuals is:
+#    0 = Default colors
+#    1 = Inactive windows
+#    2 = Active windows
+#    3 = Inactive menu entry and menu background
+#    4 = Active menu entry
+#    5 = greyed out menu entry (only bg used)
+#    6 = module foreground and background
+#    7 = hilight colors
+
+#  fg - text, bg - background, the rest is for borders
+
+Colorset 3 Translucent black 80, fg gray40, bg black
+
+#  selected item highlight:
+
+Colorset 7 fg white, bg black
+
+#  enable colorsets
+
+MenuStyle * MenuColorset 3
+MenuStyle * ActiveColorset 7
+
+#  purge 3D 
+
+MenuStyle * SeparatorsLong, TrianglesSolid
+MenuStyle * BorderWidth 2
+MenuStyle * ActiveFore, Hilight3DOff, HilightBack
+
+#  other nice things
+
+MenuStyle * PopupAsSubmenu, HoldSubmenus, SubmenusRight
+MenuStyle "*" PopupOffset 2 100
+
+# Remove border around menu
+
+MenuStyle * BorderWidth 0
+
+# Try Opacity
+
+MenuStyle * Opacity
+
+#  only works with patched
+
+# Try RoundedCorners
+
+MenuStyle * RoundedCorners
+

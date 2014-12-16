@@ -1,0 +1,56 @@
+#  Главное меню, которое появляется при 
+#  левом клике на рабочем столе. 
+# 
+#  Здесь используется динамически генерируемое меню,
+#  команда PipeRead для времени и даты, меню приложений 
+#  генерируется скриптом (автор - Виктор Ананьевский), 
+#  пайп-меню для открытия файлов и папок работает 
+#  с помощью MissingSubmenuFunction, функция задана
+#  в functions.
+#  
+#  Первые две строки создают меню и определяют его
+#  как генерируемое функцией. Следующие строки - 
+#  уже функция для создания меню. Править этот файл 
+#  пока не надо.
+#
+#  Обратите внимание на кавычки при PipeRead и 
+#  использование MissingSubmenuFunction.
+#  
+#  Амперсанд перед символом определяет, какая 
+#  клавиша выбирает данный пункт меню.
+#  
+#  Для файл-браузера используется xdg-open, для
+#  пункта exit - shutdown-dialog.py. 
+#  
+#  Если его нет в репозитории вашего дистрибутива,
+#  его можно взять здесь: 
+#  http://www.penguindevelopment.org/index.php?title=Release:shutdown-dialog 
+#  Требуется правка sudoersм для доступа к 
+#  командам выключения и перезагрузки.
+#  Если вы используете Gdm/kdm, то этого
+#  не требуется, нужно просто установить на 
+#  пункт Exit соответствующий диалог завершения работы.
+
+AddToMenu MainMenu MainMenu title
++ DynamicPopupAction Function MakeMainMenu
+
+AddToFunc MakeMainMenu
++ I DestroyMenu recreate MainMenu
++ I PipeRead 'echo "AddToMenu MainMenu \'$(date +%d.%m) - $(date +%H:%M)  :)\'"' 
++ I AddToMenu MainMenu MissingSubmenuFunction FuncFvwmMenuDirectory 
++ I AddToMenu MainMenu "" Nop
++ I AddToMenu MainMenu "Text &Editor" Exec exec $[fvwm_editor]
++ I AddToMenu MainMenu "&Terminal" Exec exec $[fvwm_terminal]
++ I AddToMenu MainMenu "&Web Browser" Exec exec $[fvwm_browser]
++ I AddToMenu MainMenu "Mail &Client" Exec exec $[fvwm_mail]
++ I AddToMenu MainMenu "&File Manager" Exec exec $[fvwm_filemanager]
++ I AddToMenu MainMenu "Internet Messe&nger" Exec exec $[fvwm_im]
++ I AddToMenu MainMenu "Music &Player" Exec exec $[fvwm_player]
++ I AddToMenu MainMenu "" Nop
++ I AddToMenu MainMenu "&Applications" Popup Applications
++ I AddToMenu MainMenu "P&laces" Popup $[HOME]
++ I AddToMenu MainMenu "Prefere&nces" Popup Preferences
++ I AddToMenu MainMenu "" Nop
++ I AddToMenu MainMenu "Re&start" Restart
++ I AddToMenu MainMenu "E&xit" Exec exec shutdown-dialog.py
+

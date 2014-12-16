@@ -1,0 +1,14 @@
+#  Здесь задаются шрифты. 
+#  
+#  Синтаксис довольно простой.
+#  
+#  Часть Shadow можно убрать.
+#  
+#  В имени шрифта допускаются пробелы.
+#  
+#  Можно добавлять варианты начертания
+# 
+#  Font "xft:Droid Sans Mono:Bold:size=10"
+
+Style "*" Font "Shadow=1:xft:snap" 
+MenuStyle "*" Font "Shadow=1:xft:snap"

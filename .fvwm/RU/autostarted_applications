@@ -1,0 +1,52 @@
+#  Автоматический запуск приложений и
+#  модулей fvwm.
+#  
+#  Впишите в этот файл свою панель, трей, менеджеры 
+#  сетевых соединений и т.д.
+ 
+
+DestroyFunc StartFunction
+AddToFunc StartFunction
+
+#  В этой настройке используется несколько 
+#  модулей fvwm.
+#  FvwmCommandS для управления WM из обычного 
+#  терминала или скрипта
+
++ I Module FvwmCommandS
+
+#  FvwmAnimate для простой анимации
+
++ I Module FvwmAnimate
+
+#  FvwmButtons позволяет добавлять кнопки
+#  на рабочий стол, создавать панели, переключатели
+#  и т.д.
+
++ I Module FvwmButtons
+
+#  FvwmBacker позволяет назначать разные обои
+#  на разные рабочие столы. Подробности в файле backer
+
++ I Module FvwmBacker
+
++ I Module FvwmPerl
+
+#  И, собственно, приложения.
+#
+#  Вставляйте Test (Init) перед Exec exec чтобы 
+#  приложения запускались при запуске fvwm, а не
+#  при рестарте.
+
+
+#  Самый простой способ включения русской раскладки:
+
++ I Test (Init) Exec exec setxkbmap -layout  "us,ru(winkeys)" -model "pc105" -option "grp:alt_shift_toggle,grp_led:scroll"
++ I Test (Init) Exec exec conky -c ~/.fvwm/files/cheatsheet
+
+#  Обои может рисовать, например, nitrogen
+
+#+ I Test (Init) Exec exec nitrogen --restore
+
+#  Подробнее про процесс запуска fvwm:
+#  http://fvwmwiki.xteddy.org/Tips/FVWMStartupProcedure/  

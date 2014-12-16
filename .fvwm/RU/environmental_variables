@@ -1,0 +1,37 @@
+#  В этом файле задаются переменные окружения.
+
+#  Папка, в которой хранятся скрипты:
+
+SetEnv fvwm_script $[FVWM_USERDIR]/scripts
+
+#  Наиболее часто используемые приложения
+#  нужо отметить здесь, чтобы вызывать их 
+#  из меню или с помощью сочетаний клавиш 
+#  и иметь возможность быстро их сменить
+
+SetEnv fvwm_editor gedit
+SetEnv fvwm_filemanager thunar
+SetEnv fvwm_browser firefox
+SetEnv fvwm_mail claws-mail
+SetEnv fvwm_im pidgin
+SetEnv fvwm_image_viewer viewnior
+SetEnv fvwm_terminal urxvt
+SetEnv fvwm_player sonata
+SetEnv fvwm_runner gmrun
+
+#  Для того, чтобы отделить настройки,
+#  отвечающие за внешний вид от настроек, 
+#  отвечающих за функционал, первые вынесены
+#  в подпапки папки themes.
+
+#  Благодаря этому я, пока писал эту конфигурацию,
+#  поменял оформление три раза, но функции остались
+#  прежними.
+
+SetEnv fvwm_theme gray
+
+#  Специальная переменная, в которой хранятся
+#  пути ко всем картинкам, которые используются в
+#  конфигурации.
+
+ImagePath $[FVWM_USERDIR]/themes/$[fvwm_theme]/decorations/:+:$[FVWM_USERDIR]/icons

@@ -1,0 +1,9 @@
+Style FvwmPager !Title, !Handles, !Borders, Sticky, WindowListSkip, CirculateSkip, StaysOnTop, FixedPosition, FixedSize, !Iconifiable
+
+
+DestroyModuleConfig LaunchTime: * 
+*LaunchTime: Rows 1 
+*LaunchTime: Columns 1 
+#*LaunchTime: (1x1, Swallow "xclock" `Exec xclock -bg '#000000' -fg white -digital -face 'Droid Sans Bold:size=9' -strftime '%a, %d %b %Y %H:%M'`))
+*LaunchTime: (1x1, Swallow FvwmPager)
+

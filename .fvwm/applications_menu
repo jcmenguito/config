@@ -1,0 +1,88 @@
+DestroyMenu "xdg_menu-Accessories"
+AddToMenu "xdg_menu-Accessories" "Accessories" Title
++		 "7-Zip FM" Exec 7zFM
++		 "Elementary Test" Exec elementary_test
++		 "Leafpad" Exec leafpad 
++		 "Root Terminal" Exec gksu -l gnome-terminal
++		 "SpaceFM File Search" Exec spacefm --find-files 
+
+DestroyMenu "xdg_menu-Education"
+AddToMenu "xdg_menu-Education" "Education" Title
++		 "LibreOffice Math" Exec libreoffice --math 
+
+DestroyMenu "xdg_menu-Graphics"
+AddToMenu "xdg_menu-Graphics" "Graphics" Title
++		 "Document Viewer" Exec evince 
++		 "LibreOffice Draw" Exec libreoffice --draw 
++		 "Pinta" Exec pinta 
++		 "Viewnior" Exec viewnior 
++		 "feh" Exec feh 
+
+DestroyMenu "xdg_menu-Internet"
+AddToMenu "xdg_menu-Internet" "Internet" Title
++		 "Avahi SSH Server Browser" Exec /usr/bin/bssh
++		 "Avahi VNC Server Browser" Exec /usr/bin/bvnc
++		 "Chromium" Exec chromium 
++		 "FQTerm" Exec fqterm -caption "FQTerm"  
++		 "Midori" Exec midori 
++		 "Midori Private Browsing" Exec midori --private 
++		 "PCManX BBS Client" Exec pcmanx
++		 "QTerm" Exec qterm -caption "QTerm"   
++		 "QupZilla" Exec qupzilla 
++		 "Transmission" Exec transmission-gtk 
++		 "Zenmap" Exec zenmap 
++		 "Zenmap (as root)" Exec /usr/share/zenmap/su-to-zenmap.sh 
+
+DestroyMenu "xdg_menu-Office"
+AddToMenu "xdg_menu-Office" "Office" Title
++		 "Document Viewer" Exec evince 
++		 "LibreOffice" Exec libreoffice 
++		 "LibreOffice Base" Exec libreoffice --base 
++		 "LibreOffice Calc" Exec libreoffice --calc 
++		 "LibreOffice Draw" Exec libreoffice --draw 
++		 "LibreOffice Impress" Exec libreoffice --impress 
++		 "LibreOffice Math" Exec libreoffice --math 
++		 "LibreOffice Writer" Exec libreoffice --writer 
+
+DestroyMenu "xdg_menu-Development"
+AddToMenu "xdg_menu-Development" "Programming" Title
++		 "CMake" Exec cmake-gui 
++		 "Elementary Test" Exec elementary_test
++		 "OpenJDK Monitoring & Management Console" Exec /usr/bin/jconsole
++		 "OpenJDK Policy Tool" Exec /usr/bin/policytool
++		 "Qt4 Assistant " Exec assistant-qt4
++		 "Qt4 Designer" Exec designer-qt4
++		 "Qt4 Linguist " Exec linguist-qt4
++		 "Qt4 QDbusViewer " Exec qdbusviewer-qt4
+
+DestroyMenu "xdg_menu-Multimedia"
+AddToMenu "xdg_menu-Multimedia" "Sound & Video" Title
++		 "Audacious" Exec audacious 
++		 "GNOME MPlayer" Exec gnome-mplayer 
++		 "Qt V4L2 test Utility" Exec qv4l2
++		 "Rhythmbox" Exec rhythmbox 
+
+DestroyMenu "xdg_menu-System"
+AddToMenu "xdg_menu-System" "System Tools" Title
++		 "Avahi Zeroconf Browser" Exec /usr/bin/avahi-discover
++		 "Cairo Composite Manager" Exec cairo-compmgr
++		 "Gigolo" Exec gigolo
++		 "Oracle VM VirtualBox" Exec VirtualBox 
++		 "SpaceFM" Exec spacefm 
++		 "Terminator" Exec terminator
++		 "Terminology" Exec terminology
++		 "UXTerm" Exec uxterm
++		 "XTerm" Exec xterm
++		 "dconf Editor" Exec dconf-editor
+
+DestroyMenu "xdg_menu"
+AddToMenu "xdg_menu" "Applications" Title
++		 "Accessories" Popup "xdg_menu-Accessories"
++		 "Education" Popup "xdg_menu-Education"
++		 "Graphics" Popup "xdg_menu-Graphics"
++		 "Internet" Popup "xdg_menu-Internet"
++		 "Office" Popup "xdg_menu-Office"
++		 "Programming" Popup "xdg_menu-Development"
++		 "Sound & Video" Popup "xdg_menu-Multimedia"
++		 "System Tools" Popup "xdg_menu-System"
+

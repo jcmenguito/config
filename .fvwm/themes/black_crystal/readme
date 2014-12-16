@@ -1,0 +1,39 @@
+Black Crystal
+
+Description:
+
+This is a theme pack for Hoodoo's FVWM Starter's Kit.
+
+Requirement:
+
+1. FVWM - the theme is tested with FVWM 2.6.3
+
+2. FVWM Starter's Kit
+
+Optional Requirements:
+
+1. If you like rounded corner windows and transparent root menu, you need to patch fvwm. The patches can be downloaded from
+   http://aur.archlinux.org/packages.php?ID=7195.
+
+2. If you like window transparency, you need transset-df and devilspie. The instruction on how to use these can be found
+   in https://wiki.archlinux.org/index.php/Per_Application_Transparency. Edit the autostarted_applications so transset-df
+   and devispie will run at start up. 
+
+ 
+
+Instructions:
+
+1. Extract the archive to your ~/.fvwm/themes folder.
+
+2. Install the dungeon.TTF font included in the archive.
+
+3. Edit your environmental_variables file to change your current fvwm theme to black_crystal.
+
+4. Restart fvwm
+
+5. Enjoy
+
+
+
+
+

@@ -1,0 +1,34 @@
+#  ВАЖНО! Нумерация цветовых схем,
+#  которую следует соблюдать:
+#    0 = Цвета по умолчанию
+#    1 = Неактивные окна
+#    2 = Активные окна
+#    3 = Неактивные элементы меню и фон меню
+#    4 = Активный пункт меню
+#    5 = Недоступный элемент меню
+#    6 = Цвета для модулей
+#    7 = Выделенные элементы
+
+#  fg - текст, bg - фон, остальное - границы
+Colorset 3 fg #585858, bg #d4d4d4 90, sh #d4d4d4, hi #D4D4D4
+
+#  подсветка выбранного элемента:
+Colorset 7 fg #00af5f, bg white
+
+#  Включаем цветовые схемы
+
+MenuStyle * MenuColorset 3
+MenuStyle * ActiveColorset 7
+
+#  Избавляемся от 3D
+
+MenuStyle * SeparatorsLong, TrianglesSolid
+MenuStyle * BorderWidth 2
+MenuStyle * ActiveFore, Hilight3DOff
+
+#  Прочие настройки
+
+MenuStyle * PopupAsSubmenu, HoldSubmenus, SubmenusRight
+MenuStyle "*" PopupOffset 2 100
+
+

@@ -1,0 +1,238 @@
+#  После того, как вы написали функцию, 
+#  Вы можете "привязать" её к любой горячей
+#  клавише, кнопке мыши, пункту меню и т.д.
+
+#  Назначение клавиш описано в файле
+#  keybindings_and_mouse. Подробное объяснение 
+#  функций можно найти в мануале.
+
+#  В этом файле приведены несколько
+#  функций, демонстрирующих возможности fvwm.
+
+#  Функция 'always on top'
+#  
+#  Используется команда TestRc 
+#  
+#  Первая строка проверяет, находится ли окно в
+#  верхнем слое (6), и если да, команда Layer без
+#  аргументов отправляет его в тот слой, в котором
+#  оно находилось до этого.
+#  
+#  Если окно не находится в самом верхнем слое, 
+#  то TestRc получает код NoMatch, и, поскольку
+#  условие во второй строке истинно, выполняется 
+#  команда, помещающая окно в верхний слой.
+#
+#  Подробности - в мануале, и часть, которая касается 
+#  функций, непременно стоит прочесть, потому что
+#  запрограммировать поведение fvwm можно исключительно 
+#  гибко. 
+
+DestroyFunc WinOnTop
+AddToFunc WinOnTop
++ I ThisWindow (Layer 6) Layer
++ I TestRc (NoMatch) Layer 0 6
+
+#  Разъяснение по поводу этой функции:
+#  http://www.mail-archive.com/fvwm@fvwm.org/msg00268.html
+
+#  Сделать скриншот и сохранить его в файл с определённым 
+#  именем. Требует scrot
+
+DestroyFunc FvwmDesktopScreenshot
+AddToFunc   FvwmDesktopScreenshot
++ I Exec exec scrot "screenshot-`date +%F[%T]`.png"
+
+#  Может оказаться полезным на широкоформатных 
+#  мониторах: уменьшить ширину окна до удобной 
+#  для чтения.
+#  
+#  Здесь используется относительная ширина окна (nnw, где
+#  w - процент ширины окна)
+
+DestroyFunc ReadableWidth
+AddToFunc ReadableWidth
++ I Maximize 60
++ I Move 50-50w 50-50w
+
+
+#  Набор функций, реализующих autoshade, подсмотренный
+#  в kwin. Окно сворачивается в заголовок. Как только 
+#  курсор оказывается в заголовке, окно разворачивается.
+#  Как только курсор покидает окно, оно снова сворачивается.
+#  
+#  Используется команда State, позволяющая задать
+#  для любого окна один или несколько статусов, 
+#  которые в последствии можно проверить и на основании
+#  проверки выполнить ту или иную команду.
+#  
+#  Модуль FvwmAuto следит за курсором и реагирует,
+#  когда тот входит в окно или покидает его.
+#  
+#  Всего можно задать 32 статуса (0-31)
+
+DestroyFunc ToggleAutoshaded
+AddToFunc ToggleAutoshaded
++ I State 0
+
+DestroyFunc AutoShade
+AddToFunc AutoShade
++ I ThisWindow (State 0) WindowShade True
+
+DestroyFunc AutoUnshade
+AddToFunc AutoUnshade
++ I ThisWindow (State 0) WindowShade False
+
+#  Вообще этот модуль следовало поместить в 
+#  автостарт, но я оставил его здесь для наглядности.
+
+Module FvwmAuto 0 -menter "Silent AutoUnshade" "Silent AutoShade"
+
+#  "Умный" запуск приложений:
+#  - Если приложение не запущено, запустить
+#  - Если запущено, поднять окно наверх
+#  - Если запущено несколько окон приложения,
+#  переключаться между ними.
+#  
+#  Эту функцию нужно вызывать с параметрами:
+#  
+#  LaunchRaiseSwitch *gedit* gedit
+#  LaunchRaiseSwitch *Namoroka firefox
+#
+#  Первый параметр - имя окна или его 
+#  часть, второй - приложение, которое следует
+#  запускать.
+#  
+#  Подробнее о параметрах - в 29 главе мануала.
+
+DestroyFunc LaunchRaiseSwitch
+AddToFunc LaunchRaiseSwitch
++ I None (*$0*) Exec exec $1
++ I Next (*$0*) Focus
++ I Next (*$0*) Iconify False
+
+Module FvwmAuto 0 -mfocus "Silent Raise" 
+
+#  Зная, как задать статус окна и как
+#  передавать фокус окну по условию, можно
+#  запрограммировать нечто похожее на group 
+#  and tab windows в компизе.
+#  
+#  Задать статус, т.е. поместить окно в группу:
+
+DestroyFunc AddToGroup
+AddToFunc AddToGroup
+
++ I ThisWindow State $0
+
+#  Переключаться между окнами в группе
+#  или между группами:
+
+DestroyFunc GroupSwitch
+AddToFunc GroupSwitch
++ I Next (State $0) Focus
+
+#  Как можно вызывать эти функции, написано
+#  в файле keybindings_and_mouse.
+
+#  Любой терминал (собственно, любое окно) 
+#  можно заставить работать так же, ка 
+#  tilda, yakuake и т.д.
+#  
+#  Параметры, передаваемые этой функции - 
+#  команда запуска терминала, имя окна, 
+#  по которому он будет отличаться от других, 
+#  ширина, высота, координаты левого верхнего 
+#  угла.
+#  
+#  Пример:
+#  Key Q A 4 QLikeLaunch urxvt quake-term 812 360 275 0
+#
+#  Такому приложению без надобности декорации, 
+#  поэтому в файл per-application_rules нужно добавить:
+#  Style "quake-term" !Title, !Handles, !Borders, !Icon, WindowListSkip
+#  с поправкой на ваши параметры.
+
+
+DestroyFunc QLikeTerm
+AddToFunc QLikeTerm
++ I None ($1, CurrentDesk) Exec exec $0 -name $1
++ I All ($1) ResizeMove $2p $3p $4p $5p
++ I All ($1) Stick True
++ I All ($1, CurrentDesk) Iconify
+
+DestroyFunc QLikeLaunch
+AddToFunc QLikeLaunch
++ I None ($1, CurrentDesk) Exec exec $0
++ I All ($1) ResizeMove $1p $2p $3p $4p
++ I All ($1) Stick True
++ I All ($1, CurrentDesk) Iconify
+
+
+
+#  Удобно иметь консоль fvwm под рукой, 
+#  вот функция для неё (используется urxvt, 
+#  но подойдёт любой терминал, для которого 
+#  при запуске можно задать имя):
+#  
+DestroyFunc QLikeFvwmConsole
+AddToFunc QLikeFvwmConsole
++ I None (FvwmConsole, CurrentDesk) FvwmConsole -terminal urxvt
++ I All (FvwmConsole) ResizeMove $0p $1p $2p $3p
++ I All (FvwmConsole) Stick True
++ I All (FvwmConsole, CurrentDesk) Iconify
+
+#  Убрать/вернуть декорации окна:
+
+DestroyFunc UnDecorate
+AddToFunc UnDecorate
++ I WindowStyle !Title, !Borders, !Handles
+
+DestroyFunc Decorate
+AddToFunc Decorate
++ I WindowStyle Title, Borders, Handles
+
+#  Эта функция нужна для пайп-меню "файлменеджер".
+#  Спасибо  rstrcogburn@кранчфорум за неё.
+#  Для работы требует xdg-utils.
+
+AddToFunc FuncFvwmMenuDirectory 
++ I PipeRead \
+"fvwm-menu-directory -d '$0' \
+-command-t 'Exec exec xdg-open "%d"' \
+-command-f 'Exec exec xdg-open "%f"'"
+
+#  Поведение тайтлбара - фокус, "отталкивание" И
+#  перетаскивание мышью.
+# 
+#  По умолчанию в fvwm двойной щелчёк по 
+#  заголовку "отпихивает" окно на задний 
+#  план. Если вам не нравится такая
+#  реакция - поменяйте Lower на Maximize.
+
+DestroyFunc TitleFunction
+AddToFunc TitleFunction
++ C Focus
++ D Lower
++ M Move
+
+#  Раздекорировать окно и развернуть 
+#  на весь экран.
+#  
+#  Обратите внимание на Schedule - 
+#  задержка в 100 миллисекунд гарантирует,
+#  что действия будут произведены одно за другим,
+#  а не наперегонки, как было бы без этого.
+
+DestroyFunc UndecMax
+AddToFunc UndecMax 
++ I ThisWindow UnDecorate
++ I Schedule 100 Maximize 100 100
+
+#  Функции автошейд и поверх всех можно
+#  комбинировать.
+
+DestroyFunc AutoShadeAndOnTop
+AddToFunc AutoShadeAndOnTop
++ I ToggleAutoShade
++ I WinOnTop
