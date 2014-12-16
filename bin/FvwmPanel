@@ -1,0 +1,1 @@
+clock -sf '%A %B %d %Y %H:%M' | dzen2 &

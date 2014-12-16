@@ -1,0 +1,72 @@
+#!/bin/sh
+ 
+FONT='-*-terminus-*-r-normal-*-*-120-*-*-*-*-iso8859-*'
+
+oneButton='^ca(1,xdotool key super+1)1^ca()'
+twoButton='^ca(1,xdotool key super+2)2^ca()'
+threeButton='^ca(1,xdotool key super+3)3^ca()'
+fourButton='^ca(1,xdotool key super+4)4^ca()'
+fiveButton='^ca(1,xdotool key super+5)5^ca()'
+sixButton='^ca(1,xdotool key super+6)6^ca()'
+sevenButton='^ca(1,xdotool key super+7)7^ca()'
+eightButton='^ca(1,xdotool key super+8)8^ca()'
+
+defaultBgC='#212629'
+
+activeBgC='#656e72'
+inactiveBgC='#212629'
+activeFgC='#212629'
+inactiveFgC='#656e72'
+
+
+while : 
+do
+	one="^bg(${inactiveBgC})^fg(${inactiveFgC}) ${oneButton} ^bg(${defaultBgC})"
+	two="^bg(${inactiveBgC})^fg(${inactiveFgC}) ${twoButton} ^bg(${defaultBgC})"
+	three="^bg(${inactiveBgC})^fg(${inactiveFgC}) ${threeButton} ^bg(${defaultBgC})" 
+	four="^bg(${inactiveBgC})^fg(${inactiveFgC}) ${fourButton} ^bg(${defaultBgC})"
+	five="^bg(${inactiveBgC})^fg(${inactiveFgC}) ${fiveButton} ^bg(${defaultBgC})"
+	six="^bg(${inactiveBgC})^fg(${inactiveFgC}) ${sixButton} ^bg(${defaultBgC})"
+	seven="^bg(${inactiveBgC})^fg(${inactiveFgC}) ${sevenButton} ^bg(${defaultBgC})"
+	eight="^bg(${inactiveBgC})^fg(${inactiveFgC}) ${eightButton} ^bg(${defaultBgC})"
+	
+
+	currentDesktop=`xprop -root | grep '_NET_CURRENT_DESKTOP(CARDINAL*' | awk -F= '{print $2}'`
+
+	if [ ${currentDesktop} = 0 ]; then #first desktop is active, etc
+		one="^bg(${activeBgC})^fg(${activeFgC}) ${oneButton} ^bg(${defaultBgC})"
+	else
+		if [ ${currentDesktop} = 1 ]; then 
+			two="^bg(${activeBgC})^fg(${activeFgC}) ${twoButton} ^bg(${defaultBgC})"
+		else
+			if [ ${currentDesktop} = 2 ]; then 
+				three="^bg(${activeBgC})^fg(${activeFgC}) ${threeButton} ^bg(${defaultBgC})"
+			else
+				if [ ${currentDesktop} = 3 ]; then 
+					four="^bg(${activeBgC})^fg(${activeFgC}) ${fourButton} ^bg(${defaultBgC})"
+				else
+					if [ ${currentDesktop} = 4 ]; then 
+						five="^bg(${activeBgC})^fg(${activeFgC}) ${fiveButton} ^bg(${defaultBgC})"
+					else
+						if [ ${currentDesktop} = 5 ]; then 
+							six="^bg(${activeBgC})^fg(${activeFgC}) ${sixButton} ^bg(${defaultBgC})"
+						else
+							if [ ${currentDesktop} = 6 ]; then 
+								seven="^bg(${activeBgC})^fg(${activeFgC}) ${sevenButton} ^bg(${defaultBgC})"
+							else
+								if [ ${currentDesktop} = 7 ]; then 
+									eight="^bg(${activeBgC})^fg(${activeFgC}) ${eightButton} ^bg(${defaultBgC})"
+								fi
+							fi
+						fi
+					fi
+				fi
+			fi
+		fi
+	fi
+	echo "${one}${two}${three}${four}${five}${six}${seven}${eight}"
+	sleep 0.25
+
+done | dzen2 -e - -h '16' -w '250' -ta l -fg $defaultBgC -bg $defaultBgC -fn $FONT &
+
+

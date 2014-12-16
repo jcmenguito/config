@@ -1,0 +1,13 @@
+#!/bin/sh
+
+FONT='-*-terminus-*-r-normal-*-*-120-*-*-*-*-iso8859-*'
+
+defaultBgC='#212629'
+
+activeBgC='#656e72'
+inactiveBgC='#212629'
+activeFgC='#212629'
+inactiveFgC='#656e72'
+
+
+conky -c ~/nooblab/dzenconky/dzenconkyrc | dzen2 -e - -h '16' -w '1116' -x 250 -ta r -fg $activeFgC -bg $defaultBgC -fn $FONT &
